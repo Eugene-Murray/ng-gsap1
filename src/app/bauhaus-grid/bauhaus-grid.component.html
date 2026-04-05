@@ -1,0 +1,53 @@
+<div class="bauhaus-container">
+  <div class="bauhaus-poster">
+
+    <div class="bauhaus-grid">
+      @for (cell of cells; track cell.id; let i = $index) {
+        <div
+          class="grid-cell"
+          [style.background-color]="cell.bgColor"
+          (mouseenter)="onCellEnter(i)"
+          (mouseleave)="onCellLeave(i)"
+        >
+          <div class="shape-wrapper">
+
+            @switch (cell.shapeType) {
+              @case ('semicircle') {
+                <!-- Upper semicircle: flat at y=50, arch curves up to y=0 -->
+                <svg viewBox="0 0 100 100" class="shape-svg">
+                  <path d="M 0 50 A 50 50 0 0 0 100 50 Z" [attr.fill]="cell.shapeColor" />
+                </svg>
+              }
+              @case ('quarter') {
+                <!-- Quarter-circle sector centred at top-left corner (0,0) -->
+                <svg viewBox="0 0 100 100" class="shape-svg">
+                  <path d="M 0 0 L 100 0 A 100 100 0 0 1 0 100 Z" [attr.fill]="cell.shapeColor" />
+                </svg>
+              }
+              @case ('circle') {
+                <svg viewBox="0 0 100 100" class="shape-svg">
+                  <circle cx="50" cy="50" r="50" [attr.fill]="cell.shapeColor" />
+                </svg>
+              }
+              @case ('diagonal') {
+                <!-- Top-left triangle -->
+                <svg viewBox="0 0 100 100" class="shape-svg">
+                  <polygon points="0,0 100,0 0,100" [attr.fill]="cell.shapeColor" />
+                </svg>
+              }
+            }
+
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="bauhaus-footer">
+      <span class="bauhaus-label">BAUHAUS</span>
+      <button class="regen-btn" (click)="regenerate()" title="Regenerate grid" aria-label="Regenerate grid">
+        ↻
+      </button>
+    </div>
+
+  </div>
+</div>
