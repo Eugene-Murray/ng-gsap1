@@ -1,0 +1,73 @@
+<div class="warm-poster">
+
+  <div class="warm-grid">
+    @for (cell of cells; track cell.id; let i = $index) {
+      <div
+        class="warm-cell"
+        [style.background-color]="cell.bgColor"
+        (mouseenter)="onCellEnter(i)"
+        (mouseleave)="onCellLeave(i)"
+      >
+        <div class="warm-shape-wrapper">
+
+          @switch (cell.shapeType) {
+            @case ('semicircle') {
+              <svg viewBox="0 0 100 100" class="warm-svg">
+                <path d="M 0 50 A 50 50 0 0 0 100 50 Z" [attr.fill]="cell.shapeColor" />
+              </svg>
+            }
+            @case ('quarter') {
+              <svg viewBox="0 0 100 100" class="warm-svg">
+                <path d="M 0 0 L 100 0 A 100 100 0 0 1 0 100 Z" [attr.fill]="cell.shapeColor" />
+              </svg>
+            }
+            @case ('circle') {
+              <svg viewBox="0 0 100 100" class="warm-svg">
+                <circle cx="50" cy="50" r="50" [attr.fill]="cell.shapeColor" />
+              </svg>
+            }
+            @case ('triangle') {
+              <svg viewBox="0 0 100 100" class="warm-svg">
+                <polygon points="50,0 100,100 0,100" [attr.fill]="cell.shapeColor" />
+              </svg>
+            }
+            @case ('stripes') {
+              <svg viewBox="0 0 100 100" class="warm-svg">
+                <rect x="0" y="0"  width="100" height="25" [attr.fill]="cell.shapeColor" />
+                <rect x="0" y="25" width="100" height="25" [attr.fill]="cell.accentColor" />
+                <rect x="0" y="50" width="100" height="25" [attr.fill]="cell.shapeColor" />
+                <rect x="0" y="75" width="100" height="25" [attr.fill]="cell.accentColor" />
+              </svg>
+            }
+            @case ('diamond') {
+              <svg viewBox="0 0 100 100" class="warm-svg">
+                <polygon points="50,5 95,50 50,95 5,50" [attr.fill]="cell.shapeColor" />
+              </svg>
+            }
+            @case ('star4') {
+              <svg viewBox="0 0 100 100" class="warm-svg">
+                <path
+                  d="M50,5 C58,28 72,42 95,50 C72,58 58,72 50,95 C42,72 28,58 5,50 C28,42 42,28 50,5 Z"
+                  [attr.fill]="cell.shapeColor"
+                />
+              </svg>
+            }
+          }
+
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="warm-footer">
+    <div class="warm-title">
+      @for (letter of bauhausLetters; track $index) {
+        <span class="warm-letter" [style.color]="letter.color">{{ letter.char }}</span>
+      }
+    </div>
+    <button class="warm-regen-btn" (click)="regenerate()" title="Regenerate grid" aria-label="Regenerate grid">
+      ↻
+    </button>
+  </div>
+
+</div>

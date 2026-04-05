@@ -1,0 +1,85 @@
+:host {
+  display: block;
+}
+
+.warm-poster {
+  display: inline-flex;
+  flex-direction: column;
+  border: 4px solid #1a1a1a;
+  box-shadow: 10px 10px 0 #1a1a1a;
+}
+
+.warm-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: #1a1a1a;
+  width: min(80vmin, 480px);
+}
+
+.warm-cell {
+  aspect-ratio: 1;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+.warm-shape-wrapper {
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.warm-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+// ── Footer ─────────────────────────────────────────────────────────────────
+
+.warm-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 1.25rem;
+  background: #f5edd6;
+  border-top: 2px solid #1a1a1a;
+}
+
+.warm-title {
+  display: flex;
+  gap: 0.02em;
+}
+
+.warm-letter {
+  font-family: 'Arial Black', 'Arial Bold', Helvetica, sans-serif;
+  font-size: clamp(1.1rem, 4vmin, 2.1rem);
+  font-weight: 900;
+  line-height: 1;
+  user-select: none;
+}
+
+.warm-regen-btn {
+  background: transparent;
+  border: 2px solid #1a1a1a;
+  color: #1a1a1a;
+  padding: 0.2rem 0.55rem;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    transform 0.12s ease;
+
+  &:hover {
+    background: #1a1a1a;
+    color: #f5edd6;
+  }
+
+  &:active {
+    transform: scale(0.92);
+  }
+}
