@@ -1,0 +1,40 @@
+<div class="blue-container">
+  <div class="blue-poster">
+
+    <div class="blue-grid">
+      @for (cell of cells; track cell.id; let i = $index) {
+        <div
+          class="blue-cell"
+          [style.background-color]="bg"
+          (mouseenter)="onCellEnter(i)"
+          (mouseleave)="onCellLeave(i)"
+        >
+          <div class="blue-shape-wrapper">
+
+            @switch (cell.shapeType) {
+              @case ('semicircle') {
+                <svg viewBox="0 0 100 100" class="blue-svg">
+                  <path d="M 0 50 A 50 50 0 0 0 100 50 Z" [attr.fill]="cell.shapeColor" />
+                </svg>
+              }
+              @case ('circle') {
+                <svg viewBox="0 0 100 100" class="blue-svg">
+                  <circle cx="50" cy="50" r="50" [attr.fill]="cell.shapeColor" />
+                </svg>
+              }
+            }
+
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="blue-footer">
+      <span class="blue-label">BAUHAUS 1923</span>
+      <button class="blue-regen-btn" (click)="regenerate()" title="Regenerate grid" aria-label="Regenerate grid">
+        ↻
+      </button>
+    </div>
+
+  </div>
+</div>
