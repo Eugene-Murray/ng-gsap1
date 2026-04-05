@@ -1,0 +1,58 @@
+<div class="pin-poster">
+
+  <div class="pin-grid">
+
+    <!-- Row 0, Col 0 — empty -->
+    <div class="pin-cell" [style.background-color]="grey"></div>
+
+    <!-- Row 0, Col 1 — Yellow quarter circle, corner at top-right -->
+    <div class="pin-cell" [style.background-color]="grey" (mouseenter)="onEnter(0)" (mouseleave)="onLeave(0)">
+      <div class="pin-wrapper">
+        <svg viewBox="0 0 100 100" class="pin-svg">
+          <!-- Corner (100,0) → line left to (0,0) → arc CCW r=100 to (100,100) → close -->
+          <path d="M 100 0 L 0 0 A 100 100 0 0 0 100 100 Z" [attr.fill]="yellow" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Row 1, Col 0 — Black quarter circle, corner at top-left -->
+    <div class="pin-cell" [style.background-color]="grey" (mouseenter)="onEnter(1)" (mouseleave)="onLeave(1)">
+      <div class="pin-wrapper">
+        <svg viewBox="0 0 100 100" class="pin-svg">
+          <!-- Corner (0,0) → line right to (100,0) → arc CW r=100 to (0,100) → close -->
+          <path d="M 0 0 L 100 0 A 100 100 0 0 1 0 100 Z" [attr.fill]="black" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Row 1, Col 1 — Blue D-semicircle, flat right edge, arc bulges left -->
+    <div class="pin-cell" [style.background-color]="grey" (mouseenter)="onEnter(2)" (mouseleave)="onLeave(2)">
+      <div class="pin-wrapper">
+        <svg viewBox="0 0 100 100" class="pin-svg">
+          <!-- Arc CCW from (100,0) through (50,50) to (100,100), closed with right edge -->
+          <path d="M 100 0 A 50 50 0 0 0 100 100 Z" [attr.fill]="blue" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Row 2, Col 0 — Red semicircle arch, flat bottom, arc curves up -->
+    <div class="pin-cell" [style.background-color]="grey" (mouseenter)="onEnter(3)" (mouseleave)="onLeave(3)">
+      <div class="pin-wrapper">
+        <svg viewBox="0 0 100 100" class="pin-svg">
+          <!-- Arc CW from (0,100) through (50,50) to (100,100), closed with bottom edge -->
+          <path d="M 0 100 A 50 50 0 0 1 100 100 Z" [attr.fill]="red" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Row 2, Col 1 — empty -->
+    <div class="pin-cell" [style.background-color]="grey"></div>
+
+  </div>
+
+  <div class="pin-footer">
+    <span class="pin-label">BAUHAUS</span>
+    <button class="pin-regen-btn" (click)="replay()" title="Replay animation" aria-label="Replay animation">↻</button>
+  </div>
+
+</div>

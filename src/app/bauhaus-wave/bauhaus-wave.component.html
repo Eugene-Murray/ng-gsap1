@@ -1,0 +1,60 @@
+<div class="wave-poster" (mouseenter)="onHoverStart()" (mouseleave)="onHoverEnd()">
+
+  <svg
+    [attr.viewBox]="'0 0 ' + svgW + ' ' + svgH"
+    class="wave-svg"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <!-- Clip sunburst to the upper section only -->
+      <clipPath [id]="compId + '-sun'">
+        <rect x="0" y="0" [attr.width]="svgW" [attr.height]="horizonY" />
+      </clipPath>
+      <!-- Clip waves to the lower section only -->
+      <clipPath [id]="compId + '-wave'">
+        <rect x="0" [attr.y]="horizonY" [attr.width]="svgW" [attr.height]="svgH - horizonY" />
+      </clipPath>
+    </defs>
+
+    <!-- Cream background -->
+    <rect width="100%" height="100%" fill="#F5F0E8" />
+
+    <!-- Sunburst rays (rotated around horizon centre via onUpdate) -->
+    <g class="ws-sunburst" [attr.clip-path]="'url(#' + compId + '-sun)'">
+      @for (ray of sunRays; track $index) {
+        <path [attr.d]="ray.d" [attr.fill]="ray.fill" />
+      }
+    </g>
+
+    <!-- Thick horizon line dividing sunburst from waves -->
+    <line
+      x1="0" [attr.y1]="horizonY"
+      [attr.x2]="svgW" [attr.y2]="horizonY"
+      stroke="#1A1A1A" stroke-width="3"
+    />
+
+    <!-- Wavy zebra stripes (scrolled via onUpdate) -->
+    <g class="ws-waves" [attr.clip-path]="'url(#' + compId + '-wave)'">
+      @for (band of waveBands; track $index) {
+        <path [attr.d]="band.d" [attr.fill]="band.fill" />
+      }
+    </g>
+  </svg>
+
+  <div class="wave-footer">
+    <div class="wave-footer-body">
+      <div class="wave-footer-top">
+        <span class="wave-title">BAUHAUS</span>
+        <span class="wave-aus">AUSSTELLUNG</span>
+      </div>
+      <div class="wave-footer-date">JULI, AUGUST, SEPTEMBER&nbsp;<strong>1923</strong></div>
+    </div>
+    <button
+      class="wave-regen"
+      (click)="replay(); $event.stopPropagation()"
+      title="Replay animation"
+      aria-label="Replay animation"
+    >↻</button>
+  </div>
+
+</div>

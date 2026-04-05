@@ -1,0 +1,51 @@
+<div class="ck-poster">
+
+  <div class="ck-grid">
+    @for (cell of cells; track cell.id; let i = $index) {
+
+      @if (cell.shapeType === 'shadow') {
+        <!-- Cream cell with large black diagonal parallelogram -->
+        <div
+          class="ck-cell"
+          [style.background-color]="cream"
+          (mouseenter)="onCellEnter(i)"
+          (mouseleave)="onCellLeave(i)"
+        >
+          <div class="ck-wrapper">
+            <svg viewBox="0 0 100 100" class="ck-svg">
+              <!-- Parallelogram: left-leaning diagonal band covering ~65% of cell -->
+              <polygon points="38,0 100,0 62,100 0,100" fill="#1a1a1a" />
+            </svg>
+          </div>
+        </div>
+      }
+
+      @if (cell.shapeType === 'accent') {
+        <!-- Black cell with coloured square -->
+        <div
+          class="ck-cell"
+          [style.background-color]="black"
+          (mouseenter)="onCellEnter(i)"
+          (mouseleave)="onCellLeave(i)"
+        >
+          <div class="ck-wrapper">
+            <svg viewBox="0 0 100 100" class="ck-svg">
+              <rect x="17" y="17" width="66" height="66" [attr.fill]="cell.accentColor" />
+            </svg>
+          </div>
+        </div>
+      }
+
+    }
+  </div>
+
+  <div class="ck-footer">
+    <div class="ck-footer-top">
+      <span class="ck-title">BAUHAUS</span>
+      <span class="ck-subtitle">AUSSTELLUNG</span>
+    </div>
+    <div class="ck-footer-bottom">JULY &middot; AUGUST &middot; SEPTEMBER&nbsp;<strong>1923</strong></div>
+    <button class="ck-regen-btn" (click)="regenerate()" title="Regenerate grid" aria-label="Regenerate grid">↻</button>
+  </div>
+
+</div>
